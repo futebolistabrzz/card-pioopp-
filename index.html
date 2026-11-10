@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cardápio principal · Robinho lanches</title>
+<meta name="description" content="Cardápio digital de Robinho lanches">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=DM%20Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#120b09; --surface:#1d1210; --text:#fff5ec; --muted:#c2a596;
+    --accent:#f97316; --accent-text:#0b0b0c; --radius:15px; --gap:12px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:"DM Sans",system-ui,sans-serif;line-height:1.5}
+  .deco{position:fixed;inset:0;pointer-events:none;background-image:radial-gradient(80% 45% at 15% -5%, #f9731633, transparent 65%), radial-gradient(60% 40% at 95% 10%, #f973161a, transparent 70%);}
+  .wrap{position:relative;max-width:1040px;margin:0 auto;padding:0 20px 80px}
+  header{padding:56px 0 28px;display:flex;flex-direction:column;gap:18px;}
+  .logo{width:72px;height:72px;overflow:hidden;border-radius:15px;background:#fff5ec12}
+  .logo img{width:100%;height:100%;object-fit:cover}
+  .eyebrow{color:var(--accent);font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;margin:0}
+  h1{font-family:"Sora",system-ui,sans-serif;font-size:clamp(28px,5vw,44px);line-height:1.05;margin:8px 0 0;letter-spacing:-.02em}
+  .desc{color:var(--muted);font-size:13.5px;max-width:540px;margin:10px 0 0}
+  .contacts{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:11.5px;color:var(--muted);}
+  nav{position:sticky;top:0;z-index:5;display:flex;gap:8px;overflow-x:auto;padding:12px 0;margin-bottom:8px;background:#120b09e6;backdrop-filter:blur(14px);border-top:1px solid #fff5ec10;border-bottom:1px solid #fff5ec10}
+  .nav-link{font-size:12px;color:var(--muted);text-decoration:none;border:1px solid #fff5ec1f;border-radius:10px;padding:7px 14px;white-space:nowrap;font-weight:500}
+  .nav-link:hover{color:#0b0b0c;background:var(--accent);border-color:var(--accent)}
+  section{padding-top:calc(var(--gap) * 1.8)}
+  .section-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  .section-head h2{font-family:"Sora",system-ui,sans-serif;font-size:17px;margin:0;font-weight:600}
+  .rule{flex:1;height:1px;background:#fff5ec1a}
+  .section-head em{font-style:normal;font-size:11px;color:var(--muted)}
+  .items{display:grid;gap:calc(var(--gap) * .7);grid-template-columns:repeat(4,minmax(0,1fr))}
+  .card{background:#1d1210; border:1px solid #fff5ec14; box-shadow:0 18px 40px -28px rgba(0,0,0,.65);border-radius:var(--radius);overflow:hidden}
+  .card.row{display:flex;gap:16px;padding:12px;align-items:stretch}
+  .row-body{flex:1;min-width:0;padding:4px 0 4px 4px}
+  .row-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+  h4{font-family:"Sora",system-ui,sans-serif;font-size:14.5px;margin:0;font-weight:600}
+  .card p{color:var(--muted);font-size:12.5px;margin:6px 0 0}
+  .prices{text-align:right;flex-shrink:0}
+  .old{color:var(--muted);text-decoration:line-through;font-size:11px;margin-right:6px}
+  .price{font-family:"Sora",system-ui,sans-serif;font-size:13.5px;font-weight:600;color:var(--accent);white-space:nowrap}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+  .chips span{border:1px solid #fff5ec22;color:var(--muted);border-radius:999px;padding:2px 8px;font-size:10.5px}
+  .thumb{width:96px;height:96px;flex-shrink:0;overflow:hidden;border-radius:11px;background:#fff5ec0d}
+  .thumb img{width:100%;height:100%;object-fit:cover}
+  .grid-card{display:flex;flex-direction:column;padding:10px}
+  .grid-card .thumb{width:100%;height:auto;aspect-ratio:16/10;border-radius:9px}
+  .grid-body{padding:10px 4px 4px}
+  footer{margin-top:56px;padding-top:26px;border-top:1px solid #fff5ec12;text-align:center;color:var(--muted);font-size:11.5px}
+  .cta{display:inline-block;margin-top:12px;background:var(--accent);color:var(--accent-text);text-decoration:none;padding:10px 20px;font-weight:600;font-size:12.5px;border-radius:9px;background:#f9731622;color:var(--accent);}
+  .brand{display:block;margin-top:14px;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:#c2a59699}
+  @media (max-width:640px){
+    .items{grid-template-columns:1fr !important}
+    .card.row .thumb{width:78px;height:78px}
+    header{padding-top:36px}
+  }
+</style>
+</head>
+<body>
+<div class="deco"></div>
+<div class="wrap">
+  <header>
+    <div class="logo"><img src="images/01.jpeg" alt="Logo"></div>
+    <div>
+      <p class="eyebrow">Robinho lanches</p>
+      <h1>Cardápio principal</h1>
+      
+    </div>
+    <div class="contacts"><span>WhatsApp 19994188529</span><span>Praça da República, 178 - Centro, Sumaré - SP, 13170-003</span></div>
+  </header>
+  <nav><a href="#cat-hot-dogs" class="nav-link">Hot Dogs</a><a href="#cat-hambúrgueres" class="nav-link">Hambúrgueres</a><a href="#cat-artesanais" class="nav-link">Artesanais</a><a href="#cat-acompanhamentos" class="nav-link">Acompanhamentos</a></nav>
+  <section id="cat-hot-dogs">
+        <div class="section-head"><h2>Hot Dogs</h2><span class="rule"></span><em>10</em></div>
+        <div class="items"><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>HOT DOG SIMPLES</h4>
+          <div class="prices"><span class="price">R$ 14,00</span></div>
+        </div>
+        <p>SALSICHA, MILHO, BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>HOT DOG DUPLO</h4>
+          <div class="prices"><span class="price">R$ 16,00</span></div>
+        </div>
+        <p>2 SALSICHAS, MILHO, BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>HOT DOG 1</h4>
+          <div class="prices"><span class="price">R$ 20,00</span></div>
+        </div>
+        <p>SALSICHA,CATUPIRY, MILHO, BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>HOT DOG 2</h4>
+          <div class="prices"><span class="price">R$ 19,00</span></div>
+        </div>
+        <p>SALSICHA, APRESUNTADO, MUSSARELA, MILHO, BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>HOT DOG 3</h4>
+          <div class="prices"><span class="price">R$ 23,00</span></div>
+        </div>
+        <p>SALSICHA, BACON, MILHO, BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>HOT DOG 4</h4>
+          <div class="prices"><span class="price">R$ 27,00</span></div>
+        </div>
+        <p>SALSICHA, CATUPIRY, BACON, MILHO, BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>HOT DOG 5</h4>
+          <div class="prices"><span class="price">R$ 29,00</span></div>
+        </div>
+        <p>SALSICHA, FRANGO, BACON, CATUPIRY MILHO, BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>HOT DOG 6</h4>
+          <div class="prices"><span class="price">R$ 16,00</span></div>
+        </div>
+        <p>SALSICHA, OVO, MILHO, BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>HOT DOG 7</h4>
+          <div class="prices"><span class="price">R$ 18,00</span></div>
+        </div>
+        <p>SALSICHA, HAMBÚRGUER, MILHO, BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>HOT DOG 8</h4>
+          <div class="prices"><span class="price">R$ 26,00</span></div>
+        </div>
+        <p>SALSICHA, BACON, OVO, MILHO, BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article></div>
+      </section><section id="cat-hambúrgueres">
+        <div class="section-head"><h2>Hambúrgueres</h2><span class="rule"></span><em>23</em></div>
+        <div class="items"><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>MISTO QUENTE</h4>
+          <div class="prices"><span class="price">R$ 22,00</span></div>
+        </div>
+        <p>APRESUNTADO, MUSSARELA, MILHO,ALFACE,BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>VEGETARIANO</h4>
+          <div class="prices"><span class="price">R$ 23,00</span></div>
+        </div>
+        <p>OVO, MUSSARELA,CATUPIRY,MILHO,ALFACE,BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>X-SALADA</h4>
+          <div class="prices"><span class="price">R$ 24,00</span></div>
+        </div>
+        <p>HAMBÚRGUER, APRESUNTADO, MUSSARELA, MILHO,ALFACE,BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>X-EGG</h4>
+          <div class="prices"><span class="price">R$ 26,00</span></div>
+        </div>
+        <p>HAMBÚRGUER,OVO, APRESUNTADO, MUSSARELA, MILHO,ALFACE,BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>X-BURGUER</h4>
+          <div class="prices"><span class="price">R$ 22,00</span></div>
+        </div>
+        <p>HAMBÚRGUER, MUSSARELA, MILHO,ALFACE BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>HAMBÚRGUER DUPLO</h4>
+          <div class="prices"><span class="price">R$ 27,00</span></div>
+        </div>
+        <p>(2)HAMBÚRGUERES, (2)FATIAS DE MUSSARELA, MILHO,ALFACE,BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>AMERICANO</h4>
+          <div class="prices"><span class="price">R$ 24,00</span></div>
+        </div>
+        <p>OVO, APRESUNTADO, MUSSARELA,MILHO,ALFACE,BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>ESPECIAL</h4>
+          <div class="prices"><span class="price">R$ 26,00</span></div>
+        </div>
+        <p>HAMBÚRGUER, SALSICHA, APRESUNTADO, MUSSARELA, MILHO,ALFACE,BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>CALIFÓRNIA</h4>
+          <div class="prices"><span class="price">R$ 34,00</span></div>
+        </div>
+        <p>BACON, OVO, APRESUNTADO, MUSSARELA, MILHO,ALFACE,BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>CALABRESA 1</h4>
+          <div class="prices"><span class="price">R$ 30,00</span></div>
+        </div>
+        <p>CALABRESA, APRESUNTADO, MUSSARELA, MILHO,ALFACE,BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>CALABRESA 2</h4>
+          <div class="prices"><span class="price">R$ 33,00</span></div>
+        </div>
+        <p>CALABRESA, OVO, APRESUNTADO, MUSSARELA, MILHO,ALFACE,BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>CALABRESA 3</h4>
+          <div class="prices"><span class="price">R$ 36,00</span></div>
+        </div>
+        <p>CALABRESA, BACON, APRESUNTADO, MUSSARELA, MILHO,ALFACE,BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>BACON 1</h4>
+          <div class="prices"><span class="price">R$ 34,00</span></div>
+        </div>
+        <p>HAMBÚRGUER, BACON, APRESUNTADO, MUSSARELA, MILHO,ALFACE,BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>BACON 2</h4>
+          <div class="prices"><span class="price">R$ 36,00</span></div>
+        </div>
+        <p>HAMBÚRGUER, BACON, OVO, APRESUNTADO, MUSSARELA, MILHO,ALFACE,BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>BACON 3</h4>
+          <div class="prices"><span class="price">R$ 39,00</span></div>
+        </div>
+        <p>HAMBÚRGUER, BACON, CATUPIRY,APRESUNTADO, MUSSARELA, MILHO,ALFACE,BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>BACON 4</h4>
+          <div class="prices"><span class="price">R$ 42,00</span></div>
+        </div>
+        <p>HAMÚRGUER, BACON, OVO, CATUPIRY, APRESUNTADO, MUSSARELA, MILHO,ALFACE,BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>X-FRANGO</h4>
+          <div class="prices"><span class="price">R$ 35,00</span></div>
+        </div>
+        <p>FRANGO,BACON,APRESUNTADO,MUSSARELA MILHO,ALFACE,BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>X-FRANGO COM CATUPIRY</h4>
+          <div class="prices"><span class="price">R$ 39,00</span></div>
+        </div>
+        <p>FRANGO,CATUPIRY,BACON,APRESUNTADO,MUSSARELA MILHO,ALFACE,BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>GORDINHO</h4>
+          <div class="prices"><span class="price">R$ 35,00</span></div>
+        </div>
+        <p>(2)HAMBÚRGUERES,(2)OVOS, CATUPIRY, APRESUNTADO,MUSSARELA, MILHO,ALFACE,BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>X-TUDO</h4>
+          <div class="prices"><span class="price">R$ 45,00</span></div>
+        </div>
+        <p>HAMBÚRGUER,FRANGO,BACON,CATUPIRY,OVO, SALSICHA, APRESUNTADO, MUSSARELA, MILHO,ALFACE, BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>BIG TUDO</h4>
+          <div class="prices"><span class="price">R$ 50,00</span></div>
+        </div>
+        <p>(2)HAMBÚRGUERES, (2)OVOS, SALSICHA,FRANGO,CATUPIRY,BACON,APRESUNTADO,MUSSARELA, MILHO,ALFACE, BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>LARICÃO</h4>
+          <div class="prices"><span class="price">R$ 58,00</span></div>
+        </div>
+        <p>(3)HAMBÚRGUERES, (3) OVOS, (2)SALSICHAS, FRANGO,CATUPIRY,BACON,APRESUNTADO,MUSSARELA, MILHO,ALFACE,BATATA PALHA, CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>CHEDDAR DUPLO</h4>
+          <div class="prices"><span class="price">R$ 41,00</span></div>
+        </div>
+        <p>(2) HAMBÚRGUERES, BACON,CHEDDAR, MILHO, ALFACE, BATATA PALHA,CATCHUP, MAIONESE E PURÊ DE BATATA.</p>
+      </div>
+    </article></div>
+      </section><section id="cat-artesanais">
+        <div class="section-head"><h2>Artesanais</h2><span class="rule"></span><em>6</em></div>
+        <div class="items"><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>CONTRA-FILÉ 1</h4>
+          <div class="prices"><span class="price">R$ 36,00</span></div>
+        </div>
+        <p>CONTRA FILÉ ,BACON, APRESUNTADO, MUSSARELA, MILHO, ALFACE, BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>CONTRA-FILÉ 2</h4>
+          <div class="prices"><span class="price">R$ 38,00</span></div>
+        </div>
+        <p>CONTRA FILÉ ,BACON, OVO, APRESUNTADO, MUSSARELA, MILHO, ALFACE, BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>CONTRA-FILÉ 3</h4>
+          <div class="prices"><span class="price">R$ 41,00</span></div>
+        </div>
+        <p>CONTRA FILÉ ,BACON, CATUPIRY, APRESUNTADO, MUSSARELA, MILHO, ALFACE, BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>COSTELA</h4>
+          <div class="prices"><span class="price">R$ 40,00</span></div>
+        </div>
+        <p>HAMBÚRGUER DE COSTELA, BACON, (2)FATIAS DE MUSSARELA, MILHO, ALFACE, BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>PICANHA</h4>
+          <div class="prices"><span class="price">R$ 41,00</span></div>
+        </div>
+        <p>HAMBÚRGUER DE PICANHA, BACON, (2)FATIAS DE MUSSARELA, MILHO, ALFACE, BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>MISTER PICANHA</h4>
+          <div class="prices"><span class="price">R$ 45,00</span></div>
+        </div>
+        <p>HAMBÚRGUER DE PICANHA, (2) BACON, (2)FATIAS DE MUSSARELA, MILHO, ALFACE, BATATA PALHA,CATCHUP, MAIONESE, E PURÊ DE BATATA.</p>
+      </div>
+    </article></div>
+      </section><section id="cat-acompanhamentos">
+        <div class="section-head"><h2>Acompanhamentos</h2><span class="rule"></span><em>1</em></div>
+        <div class="items"><article class="card grid-card">
+      
+      <div class="grid-body">
+        <div class="row-top">
+          <h4>BURGUER KIDS</h4>
+          <div class="prices"><span class="price">R$ 15,00</span></div>
+        </div>
+        <p>PÃO, CARNE, QUEIJO</p>
+      </div>
+    </article></div>
+      </section>
+  <footer>
+    Robinho lanches · Praça da República, 178 - Centro, Sumaré - SP, 13170-003
+    <br><a class="cta" href="https://wa.me/19994188529" target="_blank" rel="noreferrer">Pedir pelo WhatsApp</a>
+    <span class="brand">cardápio criado com catalogoop</span>
+  </footer>
+</div>
+<script>
+  document.querySelectorAll('.nav-link').forEach(function (link) {
+    link.addEventListener('click', function (event) {
+      event.preventDefault();
+      var target = document.querySelector(link.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+</body>
+</html>
